@@ -14,23 +14,18 @@ body{
     z-index: 0;
 }
 
-.invader{
-    position: absolute;
-    width: 50px;
-    top: 1vw;
-    left: 20vw;
-    z-index: 1;
+.alien{
+    background-image: url(assets/alien.png);
+    background-size: contain;
 }
 
 .space{
     position: absolute;
-    background-color: none;
+    background-color: blue;
     width: 50px;
     height: 50px;
     z-index: 1;
 }
-
-#inv{}
 
 .animatedBG{
     animation-name: flowBG;
@@ -58,4 +53,41 @@ button{
     100% {
         top: 0vw;
     }
+}
+
+*{
+    font-family: Avenir, sans-serif;
+    font-size: 1em;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.conteneur-grid{
+    position: absolute;
+    top: 0px;
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: minmax(60px, auto);
+    border: 2px solid red;
+    align-items: center;
+}
+.conteneur-grid > div{
+    padding: 0px 0px;
+    border: 1px dashed black;
+}
+.conteneur-grid .debut{
+    background-color: blue;
+}
+.conteneur-grid .end{
+    background-color: red;
+}
+
+img{
+    height: auto;
+    width: 50px;
+}
+.grille{
+    background-color: white;
+    position: absolute;
 }
