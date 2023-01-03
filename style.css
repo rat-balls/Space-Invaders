@@ -30,8 +30,6 @@ body{
     z-index: 1;
 }
 
-#inv{}
-
 .animatedBG{
     animation-name: flowBG;
     animation-duration: 40s;
