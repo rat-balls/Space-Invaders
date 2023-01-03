@@ -3,26 +3,31 @@ const btn = document.getElementById("btn")
 
 spaceList = []
 index = 0;
-speed = 1000
-
 function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
-    moveAliens()
+    speed = 1000
+    setInterval(function(){
+        if((index%16) === 0){
+            console.log(index)
+            speed = speed * 0.95
+            console.log("The aliens are advancing faster!")
+        }
+        moveAliens(speed)
+    }, 1000)
+    
 }
 
-function moveAliens(){
-    
-
+function moveAliens(sp){
     setInterval(function(){
         spaceList[index].classList.add("alien")
         index = index + 1
-        console.log("Speed is " + speed)
+        console.log("Speed is " + sp)
         if(spaceList[index-24].classList.contains("alien")){
             spaceList[index-24].classList.remove("alien")
         }
-        }, speed)
+        }, sp)
 }
 
 function createGrid(){
