@@ -11,7 +11,7 @@ function start(){
     setInterval(function(){
         if((index%16) === 0){
             console.log(index)
-            speed = speed * 0.95
+            speed = speed * 0.97
             console.log("The aliens are advancing faster!")
         }
         moveAliens(speed)
@@ -24,8 +24,8 @@ function moveAliens(sp){
         spaceList[index].classList.add("alien")
         index = index + 1
         console.log("Speed is " + sp)
-        if(spaceList[index-24].classList.contains("alien")){
-            spaceList[index-24].classList.remove("alien")
+        if(spaceList[index-36].classList.contains("alien")){
+            spaceList[index-36].classList.remove("alien")
         }
         }, sp)
 }
