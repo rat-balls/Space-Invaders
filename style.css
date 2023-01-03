@@ -49,8 +49,8 @@ button{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-  }
-  .conteneur-grid{
+}
+.conteneur-grid{
     position: absolute;
     top: 0px;
     display: grid;
@@ -58,19 +58,19 @@ button{
     grid-auto-rows: minmax(60px, auto);
     border: 2px solid red;
     align-items: center;
-  }
-  .conteneur-grid > div{
+}
+.conteneur-grid > div{
     padding: 0px 0px;
     border: 1px dashed black;
-  }
-  .conteneur-grid .debut{
+}
+.conteneur-grid .debut{
     background-color: blue;
-  }
-  .conteneur-grid .end{
+}
+.conteneur-grid .end{
     background-color: red;
-  }
+}
 
-  img{
+img{
     height: auto;
     width: 50px;
-  }
+}
