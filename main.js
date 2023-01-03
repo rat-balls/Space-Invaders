@@ -2,27 +2,17 @@ const bg = document.getElementById("bg");
 const btn = document.getElementById("btn")
 
 spaceList = []
-
+index = 0;
+speed = 1000
 
 function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
-    var index = 0;
-    var speed = 1000
-
-    moveAliens(speed)
-
-    setInterval(function(){
-        if((index%16) === 0){
-            console.log(index)
-            speed = speed * 0.3
-            console.log("The aliens are advancing faster!")
-        }
-    },1000)
+    moveAliens()
 }
 
-function moveAliens(speed){
+function moveAliens(){
     
 
     setInterval(function(){
