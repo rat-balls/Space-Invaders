@@ -1,9 +1,15 @@
 function start(){
-    bg.classList.add("animatedBG");
-    btn.remove();
-    createGrid();
+    bg.classList.add("animatedBG")
+    btn.remove()
+    createGrid()
+    createAliens()
 }
 
+function createAliens(){
+    for(let i = 0;i < 12; i++ ){
+        document.getElementById(`space${i}`).classList.add("alien")
+    }
+}
 
 function createGrid(){
         y = 0;
