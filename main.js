@@ -3,6 +3,7 @@ function start(){
     btn.remove()
     createGrid()
     createAliens()
+    createVaisseau()
 }
 
 function createAliens(){
@@ -14,7 +15,7 @@ function createAliens(){
 function createGrid(){
         y = 0;
         x = 0;
-    for(let i = 0;i < 160; i++ ){
+    for(let i = 0;i < 240; i++ ){
         space = document.createElement("div");
         space.classList.add("space");
         space.setAttribute("id", `space${i}`);
@@ -28,8 +29,9 @@ function createGrid(){
         }
     }
 }
+
 function createVaisseau(){
-    x = 0;
-    y = 0;
-    
+    vaisseau = document.createElement("img");
+    vaisseau.classList.add("vaisseau");
+    document.getElementById("vaisseau").addChild('<img src="./assets/space-invaders.png" alt="vaisseau">')
 }

@@ -87,7 +87,10 @@ img{
     height: auto;
     width: 50px;
 }
-.grille{
-    background-color: white;
+.grilleVaisseau{
+    height: auto;
+    width: 100px;
+    background-color: red;
     position: absolute;
+    bottom: 0px;
 }
