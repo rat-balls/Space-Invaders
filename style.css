@@ -11,6 +11,7 @@ body{
     background-image: url(assets/bg.jpeg);
     height: 200vw;
     background-repeat: repeat;
+    z-index: 0;
 }
 
 .animatedBG{
@@ -19,7 +20,15 @@ body{
     animation-iteration-count: infinite;
 }
 
-
+button{
+    position: fixed;
+    top: 50%;
+    left: 36vw;
+    font-size: 100px;
+    color: white;
+    z-index: 1;
+    background: none;
+}
 
 @keyframes flowBG{
     0%  {
