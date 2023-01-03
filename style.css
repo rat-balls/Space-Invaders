@@ -1,0 +1,34 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100vw;
+    overflow: hidden;
+}
+
+.bg{
+    position: relative;
+    top: 0vw;
+    background-image: url(assets/bg.jpeg);
+    height: 200vw;
+    background-repeat: repeat;
+}
+
+.animatedBG{
+    animation-name: flowBG;
+    animation-duration: 40s;
+    animation-iteration-count: infinite;
+}
+
+
+
+@keyframes flowBG{
+    0%  {
+        top: 0vw;
+    }
+    50% {
+        top: -50vw;
+    }
+    100% {
+        top: 0vw;
+    }
+}
