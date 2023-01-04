@@ -1,5 +1,7 @@
 const bg = document.getElementById("bg");
 const btn = document.getElementById("btn");
+const grid = document.getElementById("grid");
+const d = document.getElementById("d");
 
 spaceList = []
 index = 0;
@@ -19,18 +21,39 @@ function start(){
     createGrid()
     createPlayer()
     startTimer()
-    speed = 10000
-    setInterval(function(){moveAliens(speed)},150)
+    moveAliens(1000)
 }
 
 function moveAliens(sp){
+    x = 0
+    y = 0
+    l = false
+    o = 2
     setInterval(function(){
-        spaceList[index].classList.add("alien")
-        index = index + 1
-        console.log("Speed is " + sp)
-        if(spaceList[index-36].classList.contains("alien")){
-            spaceList[index-36].classList.remove("alien")
-        }
+       grid.style.left = `calc(-10% + ${49*(x)}px)`
+       grid.style.top = `calc(0vw + ${49*y}px)`
+       if(x == 9 && o == 0){
+        l = true
+        o = 1
+        y = y + 1
+    } else if(x == 0 && o == 0){
+        l = false
+        o = 1
+        y = y + 1
+    }
+    if(l == true && o == 1){
+        x = x
+        o = 2
+    } else if (l == false && o == 1){
+        x = x
+        o = 2
+    } else if (l == false){
+        x = x + 1
+        o = 0
+    } else if (l == true){
+        x = x - 1
+        o = 0
+    }
         }, sp)
 }
 
@@ -39,24 +62,22 @@ function createGrid(){
         x = 0
         o = 2
         l = false
-        p = false
-    for(let i = 0;i < 320; i++ ){
+    for(let i = 0;i < 42; i++ ){
         space = document.createElement("div")
-        space.classList.add("space")
+        space.classList.add("alien")
         space.setAttribute("id", `space${i}`)
-        document.body.insertBefore(space, bg)
+        grid.appendChild(space)
         document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`
         document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`
-        if(x > 16 && o == 0){
+        if(x > 12 && o == 0){
             l = true
             o = 1
             y = y + 1
-        } else if(x < 0 && o == 0){
+        } else if(x == 0 && o == 0){
             l = false
             o = 1
             y = y + 1
         }
-
         if(l == true && o == 1){
             x = x
             o = 2
@@ -79,43 +100,31 @@ function startTimer(){
     timer.classList.add("timer")
     setTimeout(function(){
         timer.innerHTML=""
-    }, 9000)
+    }, 5000)
     setTimeout(function(){
         timer.innerHTML=""
         const go = document.createTextNode("GO!!");
         timer.appendChild(go);
         document.body.insertBefore(timer, bg);
-    }, 8000)
+    }, 4000)
     setTimeout(function(){
         timer.innerHTML=""
         const five = document.createTextNode("1");
         timer.appendChild(five);
         document.body.insertBefore(timer, bg);
-    }, 7000)
+    }, 3000)
     setTimeout(function(){
         timer.innerHTML=""
         const four = document.createTextNode("2");
         timer.appendChild(four);
         document.body.insertBefore(timer, bg);
-    }, 6000)
+    }, 2000)
     setTimeout(function(){
         timer.innerHTML=""
         const three = document.createTextNode("3");
         timer.appendChild(three);
         document.body.insertBefore(timer, bg);
-    }, 5000)
-    setTimeout(function(){
-        timer.innerHTML=""
-        const two = document.createTextNode("4");
-        timer.appendChild(two);
-        document.body.insertBefore(timer, bg);
-    }, 4000)
-    setTimeout(function(){
-        timer.innerHTML=""
-        const one = document.createTextNode("5");
-        timer.appendChild(one);
-        document.body.insertBefore(timer, bg);
-    }, 3000)
+    }, 1000)
 }
 
 function createPlayer(){
@@ -191,7 +200,11 @@ function shoot(){
 setInterval(function(){
     bull = document.getElementById(`bullet`);
     bullY = bullY - 1
-    bull.style.top = `${bullY}%`
+    try {
+        bull.style.top = `${bullY}%`
+    } catch (error) {
+        TypeError
+    }
     if(bullY <= 0){
         shot = 0;
     }
