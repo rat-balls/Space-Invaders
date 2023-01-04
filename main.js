@@ -6,6 +6,9 @@ index = 0;
 shipX = 45;
 left = 0;
 right = 0;
+bullY = 100;
+shot = 0;
+n = 0;
 
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
@@ -135,7 +138,9 @@ function checkKey(e) {
     }
     if (e.keyCode == '32') {
         console.log("Pressed space")
-        shoot()
+        if(shot == 0){
+            shoot()
+        }
     }
 }
 
@@ -170,6 +175,29 @@ setInterval(function () {
             shipP.style.left = `${shipX}%`;
     }
 }, 10)
+
+function shoot(){
+    shot = 1;
+    bullY = 90;
+    bullet = document.createElement("div")
+    bullet.classList.add("bullet")
+    bullet.setAttribute("id", `bullet`)
+    document.body.insertBefore(bullet, bg)
+    bull = document.getElementById(`bullet`);
+    bull.style.left = `${shipX+1.8}%`;
+    bull.style.top = `${bullY}%`
+}
+
+setInterval(function(){
+    bull = document.getElementById(`bullet`);
+    bullY = bullY - 1
+    bull.style.top = `${bullY}%`
+    if(bullY <= 0){
+        shot = 0;
+    }
+}, 10)
+
+
 
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
