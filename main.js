@@ -19,7 +19,7 @@ function start(){
     createGrid()
     createPlayer()
     startTimer()
-    speed = 5500
+    speed = 5500 
     setInterval(function(){moveAliens(speed)},150)
 }
 
