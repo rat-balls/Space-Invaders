@@ -32,6 +32,15 @@ body{
     z-index: 2;
 }
 
+.explosion{
+    background-image: url(assets/explosion.png);
+    background-size: contain;
+    position: absolute;
+    width: 49px;
+    height: 30px;
+    z-index: 2;
+}
+
 .timer{
     position: fixed;
     display: flex;
