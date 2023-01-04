@@ -9,8 +9,9 @@ shipX = 45;
 left = 0;
 right = 0;
 bullY = 100;
-shot = 0;
+shot = 1;
 n = 0;
+started = 0;
 
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
@@ -21,7 +22,9 @@ function start(){
     createGrid()
     createPlayer()
     startTimer()
-    moveAliens(1000)
+    setTimeout(function(){
+        moveAliens(1000)
+    }, 3000)
 }
 
 function moveAliens(sp){
@@ -100,6 +103,8 @@ function startTimer(){
     timer.classList.add("timer")
     setTimeout(function(){
         timer.innerHTML=""
+        shot = 0;
+        started = 1;
     }, 5000)
     setTimeout(function(){
         timer.innerHTML=""
@@ -147,6 +152,7 @@ function checkKey(e) {
     }
     if (e.keyCode == '32') {
         console.log("Pressed space")
+        console.log(shot)
         if(shot == 0){
             shoot()
         }
@@ -198,19 +204,44 @@ function shoot(){
 }
 
 setInterval(function(){
-    bull = document.getElementById(`bullet`);
-    bullY = bullY - 1
-    try {
-        bull.style.top = `${bullY}%`
-    } catch (error) {
-        TypeError
-    }
-    if(bullY <= 0){
-        shot = 0;
-    }
+    if(started == 1){
+        bull = document.getElementById(`bullet`);
+        bullY = bullY - 1
+        try {
+            bull.style.top = `${bullY}%`
+        } catch (error) {
+            TypeError
+        }
+        if(bullY <= 0){
+            shot = 0;
+        }
+    } 
 }, 10)
 
-
+setInterval(function (){
+    for(i = 0; i < 42; i++){
+        try {
+            alien = document.querySelector(`#space${i}`)
+            bull = document.querySelector(`#bullet`);
+            aXY = alien.getBoundingClientRect()
+            bXY = bull.getBoundingClientRect()
+            if(inRange(bXY.x, aXY.x, aXY.x + 49) && inRange(bXY.y, aXY.y, aXY.y + 30)){
+                console.log("Collision")
+                bull.classList.remove("bullet")
+                bull.setAttribute("id", "")
+                alien.classList.add("explosion")
+                setTimeout(function(){
+                    exploded = document.querySelector(".explosion")
+                    exploded.classList.remove("explosion")
+                }, 200)
+                alien.classList.remove("alien")
+                
+            }
+        } catch (error) {
+            TypeError
+        }
+    } 
+}, 10)
 
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
