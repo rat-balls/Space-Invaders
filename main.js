@@ -8,7 +8,7 @@ function start(){
     btn.remove()
     createGrid()
     speed = 10000
-    setInterval(function(){moveAliens(speed)},100)
+    setInterval(function(){moveAliens(speed)},150)
 }
 
 function moveAliens(sp){
