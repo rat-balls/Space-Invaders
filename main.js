@@ -1,12 +1,20 @@
 const bg = document.getElementById("bg");
-const btn = document.getElementById("btn")
+const btn = document.getElementById("btn");
 
 spaceList = []
 index = 0;
+shipX = 50;
+left = 0;
+right = 0;
+
+document.onkeydown = checkKey;
+document.onkeyup = checkKey2;
+
 function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
+    createPlayer()
     startTimer()
     speed = 10000
     setInterval(function(){moveAliens(speed)},150)
@@ -21,6 +29,46 @@ function moveAliens(sp){
             spaceList[index-36].classList.remove("alien")
         }
         }, sp)
+}
+
+function createGrid(){
+        y = 0
+        x = 0
+        o = 2
+        l = false
+        p = false
+    for(let i = 0;i < 320; i++ ){
+        space = document.createElement("div")
+        space.classList.add("space")
+        space.setAttribute("id", `space${i}`)
+        document.body.insertBefore(space, bg)
+        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`
+        document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`
+        if(x > 16 && o == 0){
+            l = true
+            o = 1
+            y = y + 1
+        } else if(x < 0 && o == 0){
+            l = false
+            o = 1
+            y = y + 1
+        }
+
+        if(l == true && o == 1){
+            x = x
+            o = 2
+        } else if (l == false && o == 1){
+            x = x
+            o = 2
+        } else if (l == false){
+            x = x + 1
+            o = 0
+        } else if (l == true){
+            x = x - 1
+            o = 0
+        }
+        spaceList[i] = document.getElementById(`space${i}`)
+    }
 }
 
 function startTimer(){
@@ -67,46 +115,62 @@ function startTimer(){
     }, 3000)
 }
 
-function createGrid(){
-        y = 0
-        x = 0
-        o = 2
-        l = false
-        p = false
-    for(let i = 0;i < 320; i++ ){
-        space = document.createElement("div")
-        space.classList.add("space")
-        space.setAttribute("id", `space${i}`)
-        document.body.insertBefore(space, bg)
-        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`
-        document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`
-        if(x > 16 && o == 0){
-            l = true
-            o = 1
-            y = y + 1
-        } else if(x < 0 && o == 0){
-            l = false
-            o = 1
-            y = y + 1
-        }
+function createPlayer(){
+    ship = document.createElement("div")
+        ship.classList.add("ship")
+        ship.setAttribute("id", "ship")
+        document.body.insertBefore(ship, bg)
+}
 
-        if(l == true && o == 1){
-            x = x
-            o = 2
-        } else if (l == false && o == 1){
-            x = x
-            o = 2
-        } else if (l == false){
-            x = x + 1
-            o = 0
-        } else if (l == true){
-            x = x - 1
-            o = 0
-        }
-        console.log(o)
-        console.log(x)
-        console.log(y)
-        console.log(l)
-        spaceList[i] = document.getElementById(`space${i}`)
+function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        console.log("Pressed left")
+        left = 1;
     }
+    if (e.keyCode == '39') {
+        console.log("Pressed right")
+        right = 1;        
+    }
+    if (e.keyCode == '32') {
+        console.log("Pressed space")
+        shoot()
+    }
+}
+
+function checkKey2(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        left = 0;
+    }
+    if (e.keyCode == '39') {
+        right = 0;        
+    }
+}
+
+setInterval(function () {
+    shipP = document.getElementById("ship");
+
+    if(left == 1){
+        console.log("Holding left")
+        shipX = shipX - 0.5;
+            if(shipX <= 10){
+                shipX = 10;
+            }
+            shipP.style.left = `${shipX}%`;
+    }
+    if(right == 1){
+        console.log("Holding right")
+        shipX = shipX + 0.5;
+            if(shipX >= 85){
+                shipX = 85;
+            }
+            shipP.style.left = `${shipX}%`;
+    }
+}, 10)
+
+function inRange(x, min, max) {
+    return ((x - min) * (x - max) <= 0);
 }
