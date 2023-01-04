@@ -1,11 +1,11 @@
-body {
+body{
     margin: 0px;
     padding: 0px;
     height: 100vw;
     overflow: hidden;
 }
 
-.bg {
+.bg{
     position: relative;
     top: 0vw;
     background-image: url(assets/bg.jpeg);
@@ -14,12 +14,34 @@ body {
     z-index: -1;
 }
 
-.alien {
-    background-image: url(assets/alien.png);
-    background-size: contain;
+.grid{
+    background-color: blue;
+    display: flex;
+    position: fixed;
+    top: 0vw;
+    left: -10%;
+    z-index: 1;
 }
 
-.timer {
+.alien{
+    background-image: url(assets/alien.png);
+    background-size: contain;
+    position: absolute;
+    width: 49px;
+    height: 30px;
+    z-index: 2;
+}
+
+.explosion{
+    background-image: url(assets/explosion.png);
+    background-size: contain;
+    position: absolute;
+    width: 49px;
+    height: 30px;
+    z-index: 2;
+}
+
+.timer{
     position: fixed;
     display: flex;
     top: 15vw;
@@ -33,33 +55,40 @@ body {
     align-items: center;
 }
 
-.ship {
+.ship{
     background-image: url(assets/ship.png);
     width: 70px;
     height: 45px;
-    position: absolute;
+    position: fixed;
     background-size: contain;
     top: 47vw;
     left: 45vw;
     z-index: 1;
 }
 
-.space {
+.bullet{
+    background-image: url(assets/laser.png);
+    width: 20px;
+    height: 40px;
+    position: fixed;
+    background-size: contain;
+    z-index: 3;
+}
+
+.space{
     position: absolute;
     width: 49px;
     height: 30px;
     z-index: 1;
 }
 
-.animatedBG {
+.animatedBG{
     animation-name: flowBG;
-    animation-duration: 40s;
+    animation-duration: 20s;
     animation-iteration-count: infinite;
 }
 
-#inv {}
-
-button {
+button{
     position: fixed;
     top: 50%;
     left: 36vw;
@@ -69,30 +98,27 @@ button {
     background: none;
 }
 
-@keyframes flowBG {
-    0% {
+@keyframes flowBG{
+    0%  {
         top: 0vw;
     }
-
     50% {
         top: -50vw;
     }
-
     100% {
         top: 0vw;
     }
 }
 
-* {
+*{
     font-family: Avenir, sans-serif;
     font-size: 1em;
     text-align: center;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-}
-
-.conteneur-grid {
+  }
+  .conteneur-grid{
     position: absolute;
     top: 0px;
     display: grid;
@@ -100,22 +126,19 @@ button {
     grid-auto-rows: minmax(60px, auto);
     border: 2px solid red;
     align-items: center;
-}
-
-.conteneur-grid>div {
+  }
+  .conteneur-grid > div{
     padding: 0px 0px;
     border: 1px dashed black;
-}
-
-.conteneur-grid .debut {
+  }
+  .conteneur-grid .debut{
     background-color: blue;
-}
-
-.conteneur-grid .end {
+  }
+  .conteneur-grid .end{
     background-color: red;
-}
+  }
 
-img {
+  img{
     height: auto;
     width: 50px;
-}
+  }
