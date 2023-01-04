@@ -22,7 +22,7 @@ body{
 .timer{
     position: fixed;
     display: flex;
-    top: 0%;
+    top: 15vw;
     left: 45vw;
     font-size: 200px;
     color: white;

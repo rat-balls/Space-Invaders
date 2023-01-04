@@ -3,7 +3,7 @@ const btn = document.getElementById("btn");
 
 spaceList = []
 index = 0;
-shipX = 50;
+shipX = 45;
 left = 0;
 right = 0;
 
