@@ -7,6 +7,7 @@ function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
+    startTimer()
     speed = 10000
     setInterval(function(){moveAliens(speed)},150)
 }
@@ -20,6 +21,50 @@ function moveAliens(sp){
             spaceList[index-36].classList.remove("alien")
         }
         }, sp)
+}
+
+function startTimer(){
+    const timer = document.createElement("p")
+    timer.classList.add("timer")
+    setTimeout(function(){
+        timer.innerHTML=""
+    }, 9000)
+    setTimeout(function(){
+        timer.innerHTML=""
+        const go = document.createTextNode("GO!!");
+        timer.appendChild(go);
+        document.body.insertBefore(timer, bg);
+    }, 8000)
+    setTimeout(function(){
+        timer.innerHTML=""
+        const five = document.createTextNode("1");
+        timer.appendChild(five);
+        document.body.insertBefore(timer, bg);
+    }, 7000)
+    setTimeout(function(){
+        timer.innerHTML=""
+        const four = document.createTextNode("2");
+        timer.appendChild(four);
+        document.body.insertBefore(timer, bg);
+    }, 6000)
+    setTimeout(function(){
+        timer.innerHTML=""
+        const three = document.createTextNode("3");
+        timer.appendChild(three);
+        document.body.insertBefore(timer, bg);
+    }, 5000)
+    setTimeout(function(){
+        timer.innerHTML=""
+        const two = document.createTextNode("4");
+        timer.appendChild(two);
+        document.body.insertBefore(timer, bg);
+    }, 4000)
+    setTimeout(function(){
+        timer.innerHTML=""
+        const one = document.createTextNode("5");
+        timer.appendChild(one);
+        document.body.insertBefore(timer, bg);
+    }, 3000)
 }
 
 function createGrid(){

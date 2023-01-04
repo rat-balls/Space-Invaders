@@ -19,6 +19,20 @@ body{
     background-size: contain;
 }
 
+.timer{
+    position: fixed;
+    display: flex;
+    top: 0%;
+    left: 45vw;
+    font-size: 200px;
+    color: white;
+    z-index: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .space{
     position: absolute;
     width: 49px;
