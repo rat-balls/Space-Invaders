@@ -14,6 +14,20 @@ body{
     z-index: 0;
 }
 
+.alien{
+    background-image: url(assets/alien.png);
+    background-size: contain;
+}
+
+.space{
+    position: absolute;
+    width: 49px;
+    height: 30px;
+    z-index: 1;
+}
+
+#inv{}
+
 .animatedBG{
     animation-name: flowBG;
     animation-duration: 40s;
