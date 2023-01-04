@@ -20,16 +20,13 @@ function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
-<<<<<<<<< Temporary merge branch 1
     createAliens()
     createVaisseau()
-=========
     createPlayer()
     startTimer()
     setTimeout(function(){
         moveAliens(1000)
     }, 3000)
->>>>>>>>> Temporary merge branch 2
 }
 
 function moveAliens(sp){
@@ -244,5 +241,4 @@ setInterval(function (){
 
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
->>>>>>>>> Temporary merge branch 2
 }
