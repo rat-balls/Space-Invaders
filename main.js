@@ -7,16 +7,8 @@ function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
-    speed = 1000
-    setInterval(function(){
-        if((index%16) === 0){
-            console.log(index)
-            speed = speed * 0.97
-            console.log("The aliens are advancing faster!")
-        }
-        moveAliens(speed)
-    }, 1000)
-    
+    speed = 10000
+    setInterval(function(){moveAliens(speed)},100)
 }
 
 function moveAliens(sp){
