@@ -20,7 +20,16 @@ function start(){
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
+<<<<<<<<< Temporary merge branch 1
     createAliens()
+    createVaisseau()
+=========
+    createPlayer()
+    startTimer()
+    setTimeout(function(){
+        moveAliens(1000)
+    }, 3000)
+>>>>>>>>> Temporary merge branch 2
 }
 
 function moveAliens(sp){
@@ -158,4 +167,82 @@ function checkKey2(e) {
     if (e.keyCode == '39') {
         right = 0;        
     }
+}
+
+setInterval(function () {
+    shipP = document.getElementById("ship");
+
+    if(left == 1){
+        console.log("Holding left")
+        shipX = shipX - 0.5;
+            if(shipX <= 10){
+                shipX = 10;
+            }
+            shipP.style.left = `${shipX}%`;
+    }
+    if(right == 1){
+        console.log("Holding right")
+        shipX = shipX + 0.5;
+            if(shipX >= 85){
+                shipX = 85;
+            }
+            shipP.style.left = `${shipX}%`;
+    }
+}, 10)
+
+function shoot(){
+    shot = 1;
+    bullY = 90;
+    bullet = document.createElement("div")
+    bullet.classList.add("bullet")
+    bullet.setAttribute("id", `bullet`)
+    document.body.insertBefore(bullet, bg)
+    bull = document.getElementById(`bullet`);
+    bull.style.left = `${shipX+1.8}%`;
+    bull.style.top = `${bullY}%`
+}
+
+setInterval(function(){
+    if(started == 1){
+        bull = document.getElementById(`bullet`);
+        bullY = bullY - 1
+        try {
+            bull.style.top = `${bullY}%`
+        } catch (error) {
+            TypeError
+        }
+        if(bullY <= 0){
+            shot = 0;
+        }
+    } 
+}, 10)
+
+setInterval(function (){
+    for(i = 0; i < 42; i++){
+        try {
+            alien = document.querySelector(`#space${i}`)
+            bull = document.querySelector(`#bullet`);
+            aXY = alien.getBoundingClientRect()
+            bXY = bull.getBoundingClientRect()
+            if(inRange(bXY.x, aXY.x, aXY.x + 49) && inRange(bXY.y, aXY.y, aXY.y + 30)){
+                console.log("Collision")
+                bull.classList.remove("bullet")
+                bull.setAttribute("id", "")
+                alien.classList.add("explosion")
+                setTimeout(function(){
+                    exploded = document.querySelector(".explosion")
+                    exploded.classList.remove("explosion")
+                }, 200)
+                alien.classList.remove("alien")
+                
+            }
+        } catch (error) {
+            TypeError
+        }
+    } 
+}, 10)
+
+function inRange(x, min, max) {
+    return ((x - min) * (x - max) <= 0);
+>>>>>>>>> Temporary merge branch 2
 }
