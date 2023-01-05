@@ -2,6 +2,7 @@ const bg = document.getElementById("bg");
 const btn = document.getElementById("btn");
 const grid = document.getElementById("grid");
 const d = document.getElementById("d");
+const body = document.body;
 
 spaceList = []
 index = 0;
@@ -29,7 +30,7 @@ function start(){
 }
 function restart(){
     var restart = document.createElement("button");
-    restart.id = 'nouveau';
+    restart.id = 'restart';
     restart.classList.add("restart");
     restart.addEventListener('click', restartGame);
     var texte = document.createTextNode('RESTART');
@@ -79,12 +80,12 @@ function createGrid(){
         o = 2
         l = false
     for(let i = 0;i < 42; i++ ){
-        space = document.createElement("div")
-        space.classList.add("alien")
-        space.setAttribute("id", `space${i}`)
-        grid.appendChild(space)
-        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`
-        document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`
+        space = document.createElement("div");
+        space.classList.add("alien");
+        space.setAttribute("id", `space${i}`);
+        grid.appendChild(space);
+        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`;
+        document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`;
         if(x > 12 && o == 0){
             l = true
             o = 1
@@ -207,23 +208,23 @@ setInterval(function () {
 function shoot(){
     shot = 1;
     bullY = 90;
-    bullet = document.createElement("div")
-    bullet.classList.add("bullet")
-    bullet.setAttribute("id", `bullet`)
-    document.body.insertBefore(bullet, bg)
+    bullet = document.createElement("div");
+    bullet.classList.add("bullet");
+    bullet.setAttribute("id", `bullet`);
+    document.body.insertBefore(bullet, bg);
     bull = document.getElementById(`bullet`);
-    bull.style.left = `${shipX+1.8}%`;
-    bull.style.top = `${bullY}%`
+    bull.style.left = `${shipX+1.6}%`;
+    bull.style.top = `${bullY}%`;
 }
 
 setInterval(function(){
     if(started == 1){
         bull = document.getElementById(`bullet`);
-        bullY = bullY - 1
+        bullY = bullY - 1;
         try {
-            bull.style.top = `${bullY}%`
+            bull.style.top = `${bullY}%`;
         } catch (error) {
-            TypeError
+            TypeError;
         }
         if(bullY <= 0){
             shot = 0;
@@ -234,24 +235,24 @@ setInterval(function(){
 setInterval(function (){
     for(i = 0; i < 42; i++){
         try {
-            alien = document.querySelector(`#space${i}`)
+            alien = document.querySelector(`#space${i}`);
             bull = document.querySelector(`#bullet`);
-            aXY = alien.getBoundingClientRect()
-            bXY = bull.getBoundingClientRect()
+            aXY = alien.getBoundingClientRect();
+            bXY = bull.getBoundingClientRect();
             if(inRange(bXY.x, aXY.x, aXY.x + 49) && inRange(bXY.y, aXY.y, aXY.y + 30)){
-                console.log("Collision")
-                bull.classList.remove("bullet")
-                bull.setAttribute("id", "")
-                alien.classList.add("explosion")
+                console.log("Collision");
+                bull.classList.remove("bullet");
+                bull.setAttribute("id", "");
+                alien.classList.add("explosion");
                 setTimeout(function(){
-                    exploded = document.querySelector(".explosion")
-                    exploded.classList.remove("explosion")
-                }, 200)
-                alien.classList.remove("alien")
-                
+                    exploded = document.querySelector(".explosion");
+                    exploded.classList.remove("explosion");
+                }, 200);
+                alien.classList.remove("alien");
+
             }
         } catch (error) {
-            TypeError
+            TypeError;
         }
     } 
 }, 10)
@@ -259,3 +260,19 @@ setInterval(function (){
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
 }
+setInterval(meteor, 600);
+function meteor(){
+    const meteor = document.createElement('img');
+    meteor.src = "./assets/asteroid.png";
+    meteor.classList.add('asteroid');
+    meteor.style.height = '30px';
+    meteor.style.animationDuration = '5s';
+    meteor.style.left = Math.random() * window.innerWidth + 'px';
+
+    body.appendChild(meteor);
+
+    setTimeout(() => {
+        meteor.remove();
+    },10000)
+}
+

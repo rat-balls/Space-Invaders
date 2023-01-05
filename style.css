@@ -118,3 +118,20 @@ body{
         top: 0vw;
     }
 }
+.testimage{
+    color: yellow;
+    background-color: aqua;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+}
+@keyframes fall{
+    to{
+        transform: translateY(105vh);
+    }
+}
+.asteroid {
+    position: absolute;
+    top: -20px;
+    animation: fall linear forwards;
+}
