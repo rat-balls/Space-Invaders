@@ -3,6 +3,10 @@ const btn = document.getElementById("btn");
 const grid = document.getElementById("grid");
 const d = document.getElementById("d");
 const body = document.body;
+const sc = document.getElementById("sc")
+const oScreen = document.createElement("div")
+const GOM = new Audio("Musique/GameOverSong.mp3")
+const Win = document.createElement("div")
 
 spaceList = []
 index = 0;
@@ -13,6 +17,9 @@ bullY = 100;
 shot = 1;
 n = 0;
 started = 0;
+pts = 0;
+lost = false;
+played = false;
 
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
@@ -21,14 +28,23 @@ function start() {
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
+    score()
+    updateScore()
+    oScreen.classList.add("oScreen")
+    oScreen.setAttribute("id", "oscreen")
+    document.body.insertBefore(oScreen, bg)
+    Win.classList.add("Win")
+    Win.setAttribute("id", "Win")
+    document.body.insertBefore(Win, bg)
     createPlayer()
     startTimer()
-    setTimeout(function(){
-        moveAliens(300)
+    setTimeout(function () {
+        moveAliens(500)
     }, 3000)
     restart();
 }
-function restart(){
+
+function restart() {
     var restart = document.createElement("button");
     restart.id = 'restart';
     restart.classList.add("restart");
@@ -37,8 +53,21 @@ function restart(){
     restart.appendChild(texte);
     document.body.appendChild(restart);
 }
-function restartGame(){
+function restartGame() {
     window.location.reload();
+}
+
+function score() {
+    scoreBoard = document.createElement("p")
+    scoreBoard.classList.add("scoreBoard")
+    scoreBoard.setAttribute("id", "sc");
+    document.body.insertBefore(scoreBoard, bg);
+}
+
+function updateScore() {
+    scoreBoard.innerHTML = ""
+    points = document.createTextNode(`Score: ${pts}`);
+    scoreBoard.appendChild(points);
 }
 
 function moveAliens(sp) {
@@ -47,29 +76,31 @@ function moveAliens(sp) {
     l = false
     o = 2
     setInterval(function () {
-        grid.style.left = `calc(-10% + ${49 * (x)}px)`
-        grid.style.top = `calc(0vw + ${49 * y}px)`
-        if (x == 9 && o == 0) {
-            l = true
-            o = 1
-            y = y + 1
-        } else if (x == 0 && o == 0) {
-            l = false
-            o = 1
-            y = y + 1
-        }
-        if (l == true && o == 1) {
-            x = x
-            o = 2
-        } else if (l == false && o == 1) {
-            x = x
-            o = 2
-        } else if (l == false) {
-            x = x + 1
-            o = 0
-        } else if (l == true) {
-            x = x - 1
-            o = 0
+        if (lost == false) {
+            grid.style.left = `calc(-10% + ${49 * (x)}px)`
+            grid.style.top = `calc(0vw + ${49 * y}px)`
+            if (x == 9 && o == 0) {
+                l = true
+                o = 1
+                y = y + 1
+            } else if (x == 0 && o == 0) {
+                l = false
+                o = 1
+                y = y + 1
+            }
+            if (l == true && o == 1) {
+                x = x
+                o = 2
+            } else if (l == false && o == 1) {
+                x = x
+                o = 2
+            } else if (l == false) {
+                x = x + 1
+                o = 0
+            } else if (l == true) {
+                x = x - 1
+                o = 0
+            }
         }
     }, sp)
 }
@@ -155,20 +186,21 @@ function createPlayer() {
 
 function checkKey(e) {
     e = e || window.event;
-
-    if (e.keyCode == '37') {
-        console.log("Pressed left")
-        left = 1;
-    }
-    if (e.keyCode == '39') {
-        console.log("Pressed right")
-        right = 1;
-    }
-    if (e.keyCode == '32') {
-        console.log("Pressed space")
-        console.log(shot)
-        if (shot == 0) {
-            shoot()
+    if (lost == false) {
+        if (e.keyCode == '37') {
+            console.log("Pressed left")
+            left = 1;
+        }
+        if (e.keyCode == '39') {
+            console.log("Pressed right")
+            right = 1;
+        }
+        if (e.keyCode == '32') {
+            console.log("Pressed space")
+            console.log(shot)
+            if (shot == 0) {
+                shoot()
+            }
         }
     }
 }
@@ -244,7 +276,9 @@ setInterval(function () {
                 bull.classList.remove("bullet")
                 bull.setAttribute("id", "")
                 alien.classList.add("explosion")
-                setTimeout(function(){
+                pts = pts + 1;
+                updateScore()
+                setTimeout(function () {
                     exploded = document.querySelector(".explosion")
                     exploded.classList.remove("explosion")
                 }, 200)
@@ -261,19 +295,49 @@ function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
 }
 
-setInterval(function detectDivCollision() {
-    for (i = 0; i < 42; i++) {
-        alien = document.querySelector(`#space${i}`);
-        ship = document.querySelector("#ship");
+/*
+setInterval(function(){
+    rnd = Math.floor(Math.random() * 10000)
+    if(rnd > 9900){
+        console.log("Shoot")
+        rndAlien = Math.floor(Math.random() * 42)
+        alien = document.querySelector(`#space${rndAlien}`)
+        console.log("Alien div space" + rndAlien)
+        aBullet = document.createElement("div")
+        aBullet.classList.add("bullet")
+        aBullet.setAttribute("id", `alienBullet`)
+        document.body.insertBefore(aBullet, bg)
+        aBull = document.getElementById(`alienBullet`);
+        aXY = alien.getBoundingClientRect()
+        aBx = aXY.x
+        aBy = aXY.y
+        aBullet.style.left = `${(aBx*0.1) - 10}%`;
+        aBullet.style.top = `${aBy}%`
+    }
+}, 10)
+*/
 
-        pos1 = alien.getBoundingClientRect();
-        pos2 = ship.getBoundingClientRect();
+setInterval(function detectDivCollision() {
+    for (let i = 0; i < 42; i++) {
+        const alien = document.querySelector(`#space${i}`);
+        const ship = document.querySelector("#ship");
+        const pos1 = alien.getBoundingClientRect();
+        const pos2 = ship.getBoundingClientRect();
 
         if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
             console.log('Les divs sont en contact');
+            lost = true;
+            ship.style.backgroundColor = "red"
+            const oscreen = document.getElementById("oscreen")
+            oscreen.style.visibility = "visible";
+            if (played == false) {
+                GOM.play();
+                played = true
+            }
         }
+
     }
-}, 10)
+},10);
 
 setInterval(meteor, 600);
 function meteor(){
@@ -345,3 +409,16 @@ function meteor(){
 //         debriR2.remove();
 //     },10000)
 // }
+
+setInterval(function Win() {
+    if (pts >= 42) {
+        win();
+    }
+}, 100);
+
+function win() {
+    lost = true
+    console.log("Vous avez gagné!");
+    const win = document.getElementById("Win")
+    win.style.visibility = "visible";
+}
