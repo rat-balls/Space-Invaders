@@ -23,7 +23,7 @@ function start(){
     createPlayer()
     startTimer()
     setTimeout(function(){
-        moveAliens(1000)
+        moveAliens(250)
     }, 3000)
     restart();
 }
@@ -228,6 +228,7 @@ setInterval(function(){
         if(bullY <= 0){
             shot = 0;
         }
+        bullY
     } 
 }, 10)
 
