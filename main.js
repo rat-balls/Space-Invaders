@@ -23,7 +23,7 @@ function start() {
     createPlayer()
     startTimer()
     setTimeout(function(){
-        moveAliens(1000)
+        moveAliens(300)
     }, 3000)
     restart();
 }
@@ -273,3 +273,13 @@ setInterval(function detectDivCollision() {
     }
 }, 10)
 
+let asteroid = document.createElement("img");
+asteroid.src = "img/asteroid.png";
+asteroid.classList.add("asteroid");
+document.body.appendChild(asteroid);
+asteroid.style.top = "10%";
+
+let debris = document.createElement("img");
+debris.src = "img/debris.png";
+debris.classList.add("debris");
+document.body.appendChild(debris);
