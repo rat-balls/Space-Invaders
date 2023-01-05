@@ -24,7 +24,7 @@ function start() {
     createPlayer()
     startTimer()
     setTimeout(function(){
-        moveAliens(1000)
+        moveAliens(300)
     }, 3000)
     restart();
 }
@@ -259,4 +259,34 @@ setInterval(function () {
 
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
+}
+
+setInterval(function detectDivCollision() {
+    for (i = 0; i < 42; i++) {
+        alien = document.querySelector(`#space${i}`);
+        ship = document.querySelector("#ship");
+
+        pos1 = alien.getBoundingClientRect();
+        pos2 = ship.getBoundingClientRect();
+
+        if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
+            console.log('Les divs sont en contact');
+        }
+    }
+}, 10)
+
+setInterval(meteor, 600);
+function meteor(){
+    const meteor = document.createElement('img');
+    meteor.src = "./assets/asteroid.png";
+    meteor.classList.add('asteroid');
+    meteor.style.height = '30px';
+    meteor.style.animationDuration = '5s';
+    meteor.style.left = Math.random() * window.innerWidth + 'px';
+
+    body.appendChild(meteor);
+
+    setTimeout(() => {
+        meteor.remove();
+    },10000)
 }
