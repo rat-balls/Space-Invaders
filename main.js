@@ -25,6 +25,19 @@ function start(){
     setTimeout(function(){
         moveAliens(1000)
     }, 3000)
+    restart();
+}
+function restart(){
+    var restart = document.createElement("button");
+    restart.id = 'nouveau';
+    restart.classList.add("restart");
+    restart.addEventListener('click', restartGame);
+    var texte = document.createTextNode('RESTART');
+    restart.appendChild(texte);
+    document.body.appendChild(restart);
+}
+function restartGame(){
+    window.location.reload();
 }
 
 function moveAliens(sp){
