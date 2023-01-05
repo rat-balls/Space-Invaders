@@ -3,6 +3,7 @@ const btn = document.getElementById("btn");
 const grid = document.getElementById("grid");
 const oScreen = document.createElement("div")
 const GOM = new Audio("Musique/GameOverSong.mp3")
+const Win = document.createElement("div")
 
 
 spaceList = []
@@ -30,7 +31,7 @@ function start() {
     createPlayer()
     startTimer()
     setTimeout(function () {
-        moveAliens(50)
+        moveAliens(1000)
     }, 3000)
 }
 
@@ -275,5 +276,19 @@ setInterval(function detectDivCollision() {
                 played = true
             }
         }
+
     }
 }, 10);
+
+setInterval(function Win() {
+    let aliens = document.getElementsByClassName("alien");
+    if (pts >= 42) {
+        win();
+    }
+}, 100);
+
+function win() {
+    console.log("Vous avez gagné!");
+    const win = document.getElementById("win")
+    win.style.visibility = "visible";
+}

@@ -163,3 +163,18 @@ img {
     align-items: center;
     visibility: hidden;
 }
+
+.win {
+    background-image: url(assets/win.png);
+    width: 480px;
+    height: 340px;
+    position: fixed;
+    background-size: contain;
+    z-index: 3;
+    left: 35vw;
+    top: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
