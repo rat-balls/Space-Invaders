@@ -151,8 +151,8 @@ img {
 
 .oScreen {
     background-image: url(assets/game_over.png);
-    width: 500px;
-    height: 500px;
+    width: 451px;
+    height: 553px;
     position: fixed;
     background-size: contain;
     z-index: 4;
