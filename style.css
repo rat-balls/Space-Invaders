@@ -71,8 +71,9 @@ body{
     width: 20px;
     height: 40px;
     position: fixed;
+    left: -100vw;
     background-size: contain;
-    z-index: 3;
+    z-index: 0;
 }
 
 .space{
