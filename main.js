@@ -34,7 +34,7 @@ function start(){
     createPlayer()
     startTimer()
     setTimeout(function () {
-        moveAliens(1000)
+        moveAliens(500)
     }, 3000)
     restart();
 }
