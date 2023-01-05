@@ -97,6 +97,35 @@ body{
     color: white;
     z-index: 1;
     background: none;
+    animation: blink-multicolor 1.5s ease-in-out infinite alternate;
+}
+
+
+@keyframes blink-multicolor {
+    0%, 12.5% {
+        opacity: 1; color: blue;
+    }
+    12.5%, 25% {
+        opacity: 1; color: cyan;
+    }
+    25%, 37.5% {
+        opacity: 1; color: green;
+    }
+    37.5%, 50% {
+        opacity: 1; color: yellow;
+    }
+    50%, 62.5% {
+        opacity: 1; color: orange;
+    }
+    62.5%, 75% {
+        opacity: 1; color: red;
+    }
+    75%, 87.5% {
+        opacity: 1; color: pink;
+    }
+    87.5%, 100% {
+        opacity: 1; color: purple;
+    }
 }
 .restart{
     position: fixed;
@@ -126,7 +155,7 @@ body{
     width: 100px;
     position: absolute;
 }
-@keyframes fall{
+@keyframes fall1{
     to{
         transform: translateY(105vh);
     }
@@ -134,5 +163,10 @@ body{
 .asteroid {
     position: absolute;
     top: -20px;
-    animation: fall linear forwards;
+    animation: fall1 linear forwards;
+}
+.planete {
+    position: absolute;
+    top: -20px;
+    animation: fall1 linear forwards;
 }

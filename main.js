@@ -277,16 +277,71 @@ setInterval(function detectDivCollision() {
 
 setInterval(meteor, 600);
 function meteor(){
-    const meteor = document.createElement('img');
-    meteor.src = "./assets/asteroid.png";
-    meteor.classList.add('asteroid');
-    meteor.style.height = '30px';
-    meteor.style.animationDuration = '5s';
-    meteor.style.left = Math.random() * window.innerWidth + 'px';
-
-    body.appendChild(meteor);
+    const meteor1 = document.createElement('img');
+    meteor1.src = "./assets/asteroid.png";
+    meteor1.classList.add('asteroid');
+    meteor1.style.height = '30px';
+    meteor1.style.animationDuration = '5s';
+    meteor1.style.left = Math.random() * window.innerWidth + 'px';
+    body.appendChild(meteor1);
 
     setTimeout(() => {
-        meteor.remove();
+        meteor1.remove();
+    },10000)
+
+    const meteor2 = document.createElement('img');
+    meteor2.src = "./img/planete1.png";
+    meteor2.classList.add('planete');
+    meteor2.style.height = '75px';
+    meteor2.style.animationDuration = '5s';
+    meteor2.style.left = Math.random() * window.innerWidth + 'px';
+    body.appendChild(meteor2);
+
+    setTimeout(() => {
+        meteor2.remove();
     },10000)
 }
+
+// setInterval(debriL, 600);
+// function debriL(){
+//     const debriL = document.createElement('img');
+//     debriL.src = "./img/planete_orange.png";
+//     debriL.classList.add('debriL');
+//     debriL.style.height = '80px';
+//     debriL.style.animationDuration = '5s';
+//     debriL.style.left = '1px';
+//     body.appendChild(debriL);
+
+//     setTimeout(() => {
+//         debriL.remove();
+//     },10000)
+// }
+
+// setInterval(debriR, 600);
+// function debriR(){
+//     const debriR1 = document.createElement('img');
+//     debriR1.src = "./img/planete_orange.png";
+//     debriR1.classList.add('debriR1');
+//     debriR1.style.height = '80px';
+//     debriR1.style.animationDuration = '5s';
+//     debriR1.style.animationDirection = 'reverse';
+//     debriR1.style.right = '1px';
+
+//     body.appendChild(debriR);
+//     setTimeout(() => {
+//         debriR1.remove();
+//     },10000)
+//     const debriR2 = document.createElement('img');
+//     debriR2.src = "./img/planete1.png";
+//     debriR2.classList.add('debriR2');
+//     debriR2.style.height = '80px';
+//     debriR2.style.animationDuration = '5s';
+//     debriR2.style.animationDirection = 'reverse';
+//     debriR2.style.right = '1px';
+
+//     body.appendChild(debriR2);
+
+//     setTimeout(() => {
+//         debriR2.remove();
+//     },10000)
+// }
