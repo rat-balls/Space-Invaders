@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collision JS</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100wh;
+            overflow: hidden;
+        }
+
+        .ship {
+            background-image: url(assets/ship.png);
+            width: 70px;
+            height: 45px;
+            position: fixed;
+            background-size: contain;
+            top: 47vw;
+            left: 45vw;
+            z-index: 1;
+        }
+
+        .alien {
+            background-image: url(assets/alien.png);
+            background-size: contain;
+            position: absolute;
+            width: 49px;
+            height: 30px;
+            z-index: 2;
+        }
+    </style>
+
+    <div class="alien"></div>
+    <div class="ship"></div>
+
+    <script>
+
+        let ship = document.querySelector('.ship');
+        let alien = document.querySelector('.alien');
+
+        let shipX;
+        let shipY;
+
+        let box1Collider;
+        let box2Collider;
+        let _box1Width = _box1.offsetWidth;
+        let _box1Height = _box1.offsetHeight;
+        let _box2Width = _box2.offsetWidth;
+        let _box2Height = _box2.offsetHeight;
+
+        document.addEventListener('keydown', function (e) {
+            if (e.code == 'ArrowLeft') {
+                _box1StartPosX = _box1.offsetLeft;
+                _box1.style.left = _box1StartPosX - 15 + 'px';
+            } else if (e.code == 'ArrowRight') {
+                _box1StartPosX = _box1.offsetLeft;
+                _box1.style.left = _box1StartPosX + 15 + 'px';
+            } else if (e.code == 'ArrowUp') {
+                _box1StartPosY = _box1.offsetTop;
+                _box1.style.top = _box1StartPosY - 15 + 'px';
+            } else if (e.code == 'ArrowDown') {
+                _box1StartPosY = _box1.offsetTop;
+                _box1.style.top = _box1StartPosY + 15 + 'px';
+            }
+
+            box1Collider = { x: _box1.offsetLeft - _box1.scrollLeft, y: _box1.offsetTop - _box1.scrollTop, width: _box1Width, height: _box1Height };
+            box2Collider = { x: _box2.offsetLeft - _box2.scrollLeft, y: _box2.offsetTop - _box2.scrollTop, width: _box2Width, height: _box2Height };
+
+            if (box1Collider.x > box2Collider.x + box2Collider.width ||
+                box1Collider.x + box1Collider.width < box2Collider.x ||
+                box1Collider.y > box2Collider.y + box2Collider.height ||
+                box1Collider.y + box1Collider.height < box2Collider.y) {
+                _box1.style.backgroundColor = "blue";
+                _box2.style.backgroundColor = "red";
+            } else {
+                _box1.style.backgroundColor = "black";
+                _box2.style.backgroundColor = "black";
+            }
+        })
+
+    </script>
+</body>
+
+</html>
