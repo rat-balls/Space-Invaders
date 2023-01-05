@@ -2,6 +2,8 @@ const bg = document.getElementById("bg");
 const btn = document.getElementById("btn");
 const grid = document.getElementById("grid");
 const sc = document.getElementById("sc")
+const oScreen = document.createElement("div")
+const GOM = new Audio("Musique/GameOverSong.mp3")
 
 
 spaceList = []
@@ -14,6 +16,8 @@ shot = 1;
 n = 0;
 started = 0;
 pts = 0;
+lost = false;
+played = false;
 
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
@@ -24,6 +28,9 @@ function start(){
     createGrid()
     score()
     updateScore()
+    oScreen.classList.add("oScreen")
+    oScreen.setAttribute("id", "oscreen")
+    document.body.insertBefore(oScreen, bg)
     createPlayer()
     startTimer()
     setTimeout(function () {
@@ -63,32 +70,34 @@ function moveAliens(sp){
     y = 0
     l = false
     o = 2
-    setInterval(function(){
-       grid.style.left = `calc(-10% + ${49*(x)}px)`
-       grid.style.top = `calc(0vw + ${49*y}px)`
-       if(x == 9 && o == 0){
-        l = true
-        o = 1
-        y = y + 1
-    } else if(x == 0 && o == 0){
-        l = false
-        o = 1
-        y = y + 1
-    }
-    if(l == true && o == 1){
-        x = x
-        o = 2
-    } else if (l == false && o == 1){
-        x = x
-        o = 2
-    } else if (l == false){
-        x = x + 1
-        o = 0
-    } else if (l == true){
-        x = x - 1
-        o = 0
-    }
-        }, sp)
+    setInterval(function () {
+        if (lost == false) {
+            grid.style.left = `calc(-10% + ${49 * (x)}px)`
+            grid.style.top = `calc(0vw + ${49 * y}px)`
+            if (x == 9 && o == 0) {
+                l = true
+                o = 1
+                y = y + 1
+            } else if (x == 0 && o == 0) {
+                l = false
+                o = 1
+                y = y + 1
+            }
+            if (l == true && o == 1) {
+                x = x
+                o = 2
+            } else if (l == false && o == 1) {
+                x = x
+                o = 2
+            } else if (l == false) {
+                x = x + 1
+                o = 0
+            } else if (l == true) {
+                x = x - 1
+                o = 0
+            }
+        }
+    }, sp)
 }
 
 function createGrid(){
@@ -172,20 +181,21 @@ function createPlayer(){
 
 function checkKey(e) {
     e = e || window.event;
-
-    if (e.keyCode == '37') {
-        console.log("Pressed left")
-        left = 1;
-    }
-    if (e.keyCode == '39') {
-        console.log("Pressed right")
-        right = 1;        
-    }
-    if (e.keyCode == '32') {
-        console.log("Pressed space")
-        console.log(shot)
-        if(shot == 0){
-            shoot()
+    if (lost == false) {
+        if (e.keyCode == '37') {
+            console.log("Pressed left")
+            left = 1;
+        }
+        if (e.keyCode == '39') {
+            console.log("Pressed right")
+            right = 1;
+        }
+        if (e.keyCode == '32') {
+            console.log("Pressed space")
+            console.log(shot)
+            if (shot == 0) {
+                shoot()
+            }
         }
     }
 }
@@ -300,3 +310,24 @@ setInterval(function(){
     }
 }, 10)
 */
+
+setInterval(function detectDivCollision() {
+    for (let i = 0; i < 42; i++) {
+        const alien = document.querySelector(`#space${i}`);
+        const ship = document.querySelector("#ship");
+        const pos1 = alien.getBoundingClientRect();
+        const pos2 = ship.getBoundingClientRect();
+
+        if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
+            console.log('Les divs sont en contact');
+            lost = true;
+            ship.style.backgroundColor = "red"
+            const oscreen = document.getElementById("oscreen")
+            oscreen.style.visibility = "visible";
+            if (played == false) {
+                GOM.play();
+                played = true
+            }
+        }
+    }
+}, 10);

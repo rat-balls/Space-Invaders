@@ -1,11 +1,11 @@
-body{
+body {
     margin: 0px;
     padding: 0px;
     height: 100vw;
     overflow: hidden;
 }
 
-.bg{
+.bg {
     position: relative;
     top: 0vw;
     background-image: url(assets/bg.jpeg);
@@ -14,7 +14,7 @@ body{
     z-index: -1;
 }
 
-.grid{
+.grid {
     background-color: blue;
     display: flex;
     position: fixed;
@@ -23,7 +23,7 @@ body{
     z-index: 1;
 }
 
-.alien{
+.alien {
     background-image: url(assets/alien.png);
     background-size: contain;
     position: absolute;
@@ -32,7 +32,7 @@ body{
     z-index: 2;
 }
 
-.explosion{
+.explosion {
     background-image: url(assets/explosion.png);
     background-size: contain;
     position: absolute;
@@ -41,7 +41,7 @@ body{
     z-index: 2;
 }
 
-.timer{
+.timer {
     position: fixed;
     display: flex;
     top: 15vw;
@@ -55,7 +55,7 @@ body{
     align-items: center;
 }
 
-.ship{
+.ship {
     background-image: url(assets/ship.png);
     width: 70px;
     height: 45px;
@@ -66,7 +66,7 @@ body{
     z-index: 1;
 }
 
-.bullet{
+.bullet {
     background-image: url(assets/laser.png);
     width: 20px;
     height: 40px;
@@ -85,20 +85,20 @@ body{
     font-size: 30px;
 }
 
-.space{
+.space {
     position: absolute;
     width: 49px;
     height: 30px;
     z-index: 1;
 }
 
-.animatedBG{
+.animatedBG {
     animation-name: flowBG;
     animation-duration: 20s;
     animation-iteration-count: infinite;
 }
 
-.start{
+.start {
     position: fixed;
     top: 50%;
     left: 36vw;
@@ -107,6 +107,7 @@ body{
     z-index: 1;
     background: none;
 }
+
 .restart{
     position: fixed;
     bottom: 5%;
@@ -115,16 +116,62 @@ body{
     color: white;
     z-index: 1;
     background: none;
+    height: 45px;
 }
 
-@keyframes flowBG{
-    0%  {
+@keyframes flowBG {
+    0% {
         top: 0vw;
     }
+
     50% {
         top: -50vw;
     }
+
     100% {
         top: 0vw;
     }
+}
+
+.conteneur-grid {
+    position: absolute;
+    top: 0px;
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: minmax(60px, auto);
+    border: 2px solid red;
+    align-items: center;
+}
+
+.conteneur-grid>div {
+    padding: 0px 0px;
+    border: 1px dashed black;
+}
+
+.conteneur-grid .debut {
+    background-color: blue;
+}
+
+.conteneur-grid .end {
+    background-color: red;
+}
+
+img {
+    height: auto;
+    width: 50px;
+}
+
+.oScreen {
+    background-image: url(assets/game_over.png);
+    width: 451px;
+    height: 553px;
+    position: fixed;
+    background-size: contain;
+    z-index: 4;
+    left: 35vw;
+    top: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
 }
