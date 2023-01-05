@@ -76,7 +76,7 @@ body {
     z-index: 0;
 }
 
-.scoreBoard{
+.scoreBoard {
     color: white;
     position: fixed;
     bottom: 7%;
@@ -108,7 +108,7 @@ body {
     background: none;
 }
 
-.restart{
+.restart {
     position: fixed;
     bottom: 5%;
     left: 7vw;
@@ -176,7 +176,7 @@ img {
     visibility: hidden;
 }
 
-.win {
+.Win {
     background-image: url(assets/win.png);
     width: 480px;
     height: 340px;
