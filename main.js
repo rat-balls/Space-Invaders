@@ -240,8 +240,7 @@ setInterval(function (){
             bXY = bull.getBoundingClientRect()
             if(inRange(bXY.x, aXY.x, aXY.x + 49) && inRange(bXY.y, aXY.y, aXY.y + 30)){
                 console.log("Collision")
-                bull.classList.remove("bullet")
-                bull.setAttribute("id", "")
+                bull.remove()
                 alien.classList.add("explosion")
                 setTimeout(function(){
                     exploded = document.querySelector(".explosion")
