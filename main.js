@@ -1,7 +1,9 @@
 const bg = document.getElementById("bg");
 const btn = document.getElementById("btn");
 const grid = document.getElementById("grid");
-const d = document.getElementById("d");
+const oScreen = document.createElement("div")
+const GOM = new Audio("SpaceInvader.mp3")
+
 
 spaceList = []
 index = 0;
@@ -20,14 +22,18 @@ function start() {
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
+    oScreen.classList.add("oScreen")
+    oScreen.setAttribute("id", "oscreen")
+    document.body.insertBefore(oScreen, bg)
     createPlayer()
     startTimer()
     setTimeout(function () {
-        moveAliens(100)
+        moveAliens(50)
     }, 3000)
 }
 
 function moveAliens(sp) {
+
     x = 0
     y = 0
     l = false
@@ -248,16 +254,18 @@ function inRange(x, min, max) {
 }
 
 setInterval(function detectDivCollision() {
-    for (i = 0; i < 42; i++) {
-        alien = document.querySelector(`#space${i}`);
-        ship = document.querySelector("#ship");
-
-        pos1 = alien.getBoundingClientRect();
-        pos2 = ship.getBoundingClientRect();
+    for (let i = 0; i < 42; i++) {
+        const alien = document.querySelector(`#space${i}`);
+        const ship = document.querySelector("#ship");
+        const pos1 = alien.getBoundingClientRect();
+        const pos2 = ship.getBoundingClientRect();
 
         if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
             console.log('Les divs sont en contact');
+            ship.style.backgroundColor = "red"
+            const oscreen = document.getElementById("oscreen")
+            oscreen.style.visibility = "visible";
+            GOM.play();
         }
     }
-}, 10)
-
+}, 10);
