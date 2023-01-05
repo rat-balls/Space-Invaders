@@ -76,6 +76,15 @@ body{
     z-index: 0;
 }
 
+.scoreBoard{
+    color: white;
+    position: fixed;
+    bottom: 7%;
+    left: 8.7vw;
+    z-index: 1;
+    font-size: 30px;
+}
+
 .space{
     position: absolute;
     width: 49px;
