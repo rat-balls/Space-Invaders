@@ -17,7 +17,7 @@ started = 0;
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
 
-function start(){
+function start() {
     bg.classList.add("animatedBG")
     btn.remove()
     createGrid()
@@ -41,37 +41,37 @@ function restartGame(){
     window.location.reload();
 }
 
-function moveAliens(sp){
+function moveAliens(sp) {
     x = 0
     y = 0
     l = false
     o = 2
-    setInterval(function(){
-       grid.style.left = `calc(-10% + ${49*(x)}px)`
-       grid.style.top = `calc(0vw + ${49*y}px)`
-       if(x == 9 && o == 0){
-        l = true
-        o = 1
-        y = y + 1
-    } else if(x == 0 && o == 0){
-        l = false
-        o = 1
-        y = y + 1
-    }
-    if(l == true && o == 1){
-        x = x
-        o = 2
-    } else if (l == false && o == 1){
-        x = x
-        o = 2
-    } else if (l == false){
-        x = x + 1
-        o = 0
-    } else if (l == true){
-        x = x - 1
-        o = 0
-    }
-        }, sp)
+    setInterval(function () {
+        grid.style.left = `calc(-10% + ${49 * (x)}px)`
+        grid.style.top = `calc(0vw + ${49 * y}px)`
+        if (x == 9 && o == 0) {
+            l = true
+            o = 1
+            y = y + 1
+        } else if (x == 0 && o == 0) {
+            l = false
+            o = 1
+            y = y + 1
+        }
+        if (l == true && o == 1) {
+            x = x
+            o = 2
+        } else if (l == false && o == 1) {
+            x = x
+            o = 2
+        } else if (l == false) {
+            x = x + 1
+            o = 0
+        } else if (l == true) {
+            x = x - 1
+            o = 0
+        }
+    }, sp)
 }
 
 function createGrid(){
@@ -80,31 +80,31 @@ function createGrid(){
         o = 2
         l = false
     for(let i = 0;i < 42; i++ ){
-        space = document.createElement("div");
-        space.classList.add("alien");
-        space.setAttribute("id", `space${i}`);
-        grid.appendChild(space);
-        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`;
-        document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`;
+        space = document.createElement("div")
+        space.classList.add("alien")
+        space.setAttribute("id", `space${i}`)
+        grid.appendChild(space)
+        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50*x}px)`
+        document.getElementById(`space${i}`).style.top = `calc(${50*y}px)`
         if(x > 12 && o == 0){
             l = true
             o = 1
             y = y + 1
-        } else if(x == 0 && o == 0){
+        } else if (x == 0 && o == 0) {
             l = false
             o = 1
             y = y + 1
         }
-        if(l == true && o == 1){
+        if (l == true && o == 1) {
             x = x
             o = 2
-        } else if (l == false && o == 1){
+        } else if (l == false && o == 1) {
             x = x
             o = 2
-        } else if (l == false){
+        } else if (l == false) {
             x = x + 1
             o = 0
-        } else if (l == true){
+        } else if (l == true) {
             x = x - 1
             o = 0
         }
@@ -112,45 +112,45 @@ function createGrid(){
     }
 }
 
-function startTimer(){
+function startTimer() {
     const timer = document.createElement("p")
     timer.classList.add("timer")
-    setTimeout(function(){
-        timer.innerHTML=""
+    setTimeout(function () {
+        timer.innerHTML = ""
         shot = 0;
         started = 1;
     }, 5000)
-    setTimeout(function(){
-        timer.innerHTML=""
+    setTimeout(function () {
+        timer.innerHTML = ""
         const go = document.createTextNode("GO!!");
         timer.appendChild(go);
         document.body.insertBefore(timer, bg);
     }, 4000)
-    setTimeout(function(){
-        timer.innerHTML=""
+    setTimeout(function () {
+        timer.innerHTML = ""
         const five = document.createTextNode("1");
         timer.appendChild(five);
         document.body.insertBefore(timer, bg);
     }, 3000)
-    setTimeout(function(){
-        timer.innerHTML=""
+    setTimeout(function () {
+        timer.innerHTML = ""
         const four = document.createTextNode("2");
         timer.appendChild(four);
         document.body.insertBefore(timer, bg);
     }, 2000)
-    setTimeout(function(){
-        timer.innerHTML=""
+    setTimeout(function () {
+        timer.innerHTML = ""
         const three = document.createTextNode("3");
         timer.appendChild(three);
         document.body.insertBefore(timer, bg);
     }, 1000)
 }
 
-function createPlayer(){
+function createPlayer() {
     ship = document.createElement("div")
-        ship.classList.add("ship")
-        ship.setAttribute("id", "ship")
-        document.body.insertBefore(ship, bg)
+    ship.classList.add("ship")
+    ship.setAttribute("id", "ship")
+    document.body.insertBefore(ship, bg)
 }
 
 function checkKey(e) {
@@ -162,12 +162,12 @@ function checkKey(e) {
     }
     if (e.keyCode == '39') {
         console.log("Pressed right")
-        right = 1;        
+        right = 1;
     }
     if (e.keyCode == '32') {
         console.log("Pressed space")
         console.log(shot)
-        if(shot == 0){
+        if (shot == 0) {
             shoot()
         }
     }
@@ -180,32 +180,32 @@ function checkKey2(e) {
         left = 0;
     }
     if (e.keyCode == '39') {
-        right = 0;        
+        right = 0;
     }
 }
 
 setInterval(function () {
     shipP = document.getElementById("ship");
 
-    if(left == 1){
+    if (left == 1) {
         console.log("Holding left")
         shipX = shipX - 0.5;
-            if(shipX <= 10){
-                shipX = 10;
-            }
-            shipP.style.left = `${shipX}%`;
+        if (shipX <= 10) {
+            shipX = 10;
+        }
+        shipP.style.left = `${shipX}%`;
     }
-    if(right == 1){
+    if (right == 1) {
         console.log("Holding right")
         shipX = shipX + 0.5;
-            if(shipX >= 85){
-                shipX = 85;
-            }
-            shipP.style.left = `${shipX}%`;
+        if (shipX >= 85) {
+            shipX = 85;
+        }
+        shipP.style.left = `${shipX}%`;
     }
 }, 10)
 
-function shoot(){
+function shoot() {
     shot = 1;
     bullY = 90;
     bullet = document.createElement("div");
@@ -213,12 +213,12 @@ function shoot(){
     bullet.setAttribute("id", `bullet`);
     document.body.insertBefore(bullet, bg);
     bull = document.getElementById(`bullet`);
-    bull.style.left = `${shipX+1.6}%`;
-    bull.style.top = `${bullY}%`;
+    bull.style.left = `${shipX+1.8}%`;
+    bull.style.top = `${bullY}%`
 }
 
-setInterval(function(){
-    if(started == 1){
+setInterval(function () {
+    if (started == 1) {
         bull = document.getElementById(`bullet`);
         bullY = bullY - 1;
         try {
@@ -226,53 +226,37 @@ setInterval(function(){
         } catch (error) {
             TypeError;
         }
-        if(bullY <= 0){
+        if (bullY <= 0) {
             shot = 0;
         }
     } 
 }, 10)
 
-setInterval(function (){
-    for(i = 0; i < 42; i++){
+setInterval(function () {
+    for (i = 0; i < 42; i++) {
         try {
             alien = document.querySelector(`#space${i}`);
             bull = document.querySelector(`#bullet`);
-            aXY = alien.getBoundingClientRect();
-            bXY = bull.getBoundingClientRect();
+            aXY = alien.getBoundingClientRect()
+            bXY = bull.getBoundingClientRect()
             if(inRange(bXY.x, aXY.x, aXY.x + 49) && inRange(bXY.y, aXY.y, aXY.y + 30)){
-                console.log("Collision");
-                bull.classList.remove("bullet");
-                bull.setAttribute("id", "");
-                alien.classList.add("explosion");
+                console.log("Collision")
+                bull.classList.remove("bullet")
+                bull.setAttribute("id", "")
+                alien.classList.add("explosion")
                 setTimeout(function(){
-                    exploded = document.querySelector(".explosion");
-                    exploded.classList.remove("explosion");
-                }, 200);
-                alien.classList.remove("alien");
-
+                    exploded = document.querySelector(".explosion")
+                    exploded.classList.remove("explosion")
+                }, 200)
+                alien.classList.remove("alien")
+                
             }
         } catch (error) {
             TypeError;
         }
-    } 
+    }
 }, 10)
 
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
 }
-setInterval(meteor, 600);
-function meteor(){
-    const meteor = document.createElement('img');
-    meteor.src = "./assets/asteroid.png";
-    meteor.classList.add('asteroid');
-    meteor.style.height = '30px';
-    meteor.style.animationDuration = '5s';
-    meteor.style.left = Math.random() * window.innerWidth + 'px';
-
-    body.appendChild(meteor);
-
-    setTimeout(() => {
-        meteor.remove();
-    },10000)
-}
-
