@@ -71,8 +71,18 @@ body {
     width: 20px;
     height: 40px;
     position: fixed;
+    left: -100vw;
     background-size: contain;
-    z-index: 3;
+    z-index: 0;
+}
+
+.scoreBoard{
+    color: white;
+    position: fixed;
+    bottom: 7%;
+    left: 8.7vw;
+    z-index: 1;
+    font-size: 30px;
 }
 
 .space {
@@ -88,7 +98,7 @@ body {
     animation-iteration-count: infinite;
 }
 
-button {
+.start {
     position: fixed;
     top: 50%;
     left: 36vw;
@@ -96,6 +106,17 @@ button {
     color: white;
     z-index: 1;
     background: none;
+}
+
+.restart{
+    position: fixed;
+    bottom: 5%;
+    left: 7vw;
+    font-size: 30px;
+    color: white;
+    z-index: 1;
+    background: none;
+    height: 45px;
 }
 
 @keyframes flowBG {
@@ -110,15 +131,6 @@ button {
     100% {
         top: 0vw;
     }
-}
-
-* {
-    font-family: Avenir, sans-serif;
-    font-size: 1em;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
 }
 
 .conteneur-grid {
