@@ -212,7 +212,7 @@ setInterval(function () {
 
 function shoot() {
     shot = 1;
-    bullY = 90;
+    bullY = 62;
     bullet = document.createElement("div")
     bullet.classList.add("bullet")
     bullet.setAttribute("id", `bullet`)
