@@ -298,7 +298,7 @@ function inRange(x, min, max) {
 }
 setInterval(meteor, 600);
 function meteor(){
-    const meteor1 = document.createElement('img)');
+    const meteor1 = document.createElement('img');
     meteor1.src = "./assets/asteroid.png";
     meteor1.classList.add('asteroid');
     meteor1.style.height = '40px';
