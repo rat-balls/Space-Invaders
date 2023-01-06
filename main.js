@@ -363,7 +363,7 @@ function meteor(){
     const meteor2 = document.createElement('img');
     meteor2.src = "./img/planete1.png";
     meteor2.classList.add('planete');
-    meteor2.style.height = '75px';
+    meteor2.style.height = '50px';
     meteor2.style.animationDuration = '5s';
     meteor2.style.left = Math.random() * window.innerWidth + 'px';
     body.appendChild(meteor2);
