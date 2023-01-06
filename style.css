@@ -100,8 +100,8 @@ body {
 
 .start {
     position: fixed;
-    top: 50%;
-    left: 36vw;
+    top: 21vw;
+    left: 37.5vw;
     font-size: 100px;
     color: white;
     z-index: 1;
