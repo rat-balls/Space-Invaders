@@ -36,10 +36,7 @@ function start() {
     Win.setAttribute("id", "Win")
     document.body.insertBefore(Win, bg)
     createPlayer()
-    startTimer()
-    setTimeout(function () {
-        moveAliens(500)
-    }, 3000)
+    moveAliens(500)
     restart();
 }
 
@@ -65,7 +62,7 @@ function score() {
 
 function updateScore() {
     scoreBoard.innerHTML = ""
-    points = document.createTextNode(`Score: ${pts}`);
+    points = document.createTextNode(`Score : ${pts}`);
     scoreBoard.appendChild(points);
 }
 
@@ -76,13 +73,13 @@ function moveAliens(sp) {
     o = 2
     setInterval(function () {
         if (lost == false) {
-            grid.style.left = `calc(-10% + ${49 * (x)}px)`
-            grid.style.top = `calc(0vw + ${49 * y}px)`
-            if (x == 9 && o == 0) {
+            grid.style.left = `calc(21.05% + ${25 * (x)}px)`
+            grid.style.top = `calc(6.5% + ${25 * y}px)`
+            if (x == 4 && o == 0) {
                 l = true
                 o = 1
                 y = y + 1
-            } else if (x == 0 && o == 0) {
+            } else if (x == -4 && o == 0) {
                 l = false
                 o = 1
                 y = y + 1
@@ -99,6 +96,8 @@ function moveAliens(sp) {
             } else if (l == true) {
                 x = x - 1
                 o = 0
+            } if (y > 17) {
+                lost = true
             }
         }
     }, sp)
@@ -109,14 +108,14 @@ function createGrid() {
     x = 0
     o = 2
     l = false
-    for (let i = 0; i < 42; i++) {
+    for (let i = 0; i < 36; i++) {
         space = document.createElement("div")
         space.classList.add("alien")
         space.setAttribute("id", `space${i}`)
         grid.appendChild(space)
-        document.getElementById(`space${i}`).style.left = `calc(20vw + ${50 * x}px)`
-        document.getElementById(`space${i}`).style.top = `calc(${50 * y}px)`
-        if (x > 12 && o == 0) {
+        document.getElementById(`space${i}`).style.left = `calc(20vw + ${25 * x}px)`
+        document.getElementById(`space${i}`).style.top = `calc(${25 * y}px)`
+        if (x > 10 && o == 0) {
             l = true
             o = 1
             y = y + 1
@@ -142,39 +141,14 @@ function createGrid() {
     }
 }
 
-function startTimer() {
-    const timer = document.createElement("p")
-    timer.classList.add("timer")
-    setTimeout(function () {
-        timer.innerHTML = ""
-        shot = 0;
-        started = 1;
-    }, 5000)
-    setTimeout(function () {
-        timer.innerHTML = ""
-        const go = document.createTextNode("GO!!");
-        timer.appendChild(go);
-        document.body.insertBefore(timer, bg);
-    }, 4000)
-    setTimeout(function () {
-        timer.innerHTML = ""
-        const five = document.createTextNode("1");
-        timer.appendChild(five);
-        document.body.insertBefore(timer, bg);
-    }, 3000)
-    setTimeout(function () {
-        timer.innerHTML = ""
-        const four = document.createTextNode("2");
-        timer.appendChild(four);
-        document.body.insertBefore(timer, bg);
-    }, 2000)
-    setTimeout(function () {
-        timer.innerHTML = ""
-        const three = document.createTextNode("3");
-        timer.appendChild(three);
-        document.body.insertBefore(timer, bg);
-    }, 1000)
-}
+
+const timer = document.createElement("p")
+timer.classList.add("timer")
+setTimeout(function () {
+    timer.innerHTML = ""
+    shot = 0;
+    started = 1;
+}, 500)
 
 function createPlayer() {
     ship = document.createElement("div")
@@ -221,16 +195,16 @@ setInterval(function () {
     if (left == 1) {
         console.log("Holding left")
         shipX = shipX - 0.5;
-        if (shipX <= 10) {
-            shipX = 10;
+        if (shipX <= 35.5) {
+            shipX = 35.5;
         }
         shipP.style.left = `${shipX}%`;
     }
     if (right == 1) {
         console.log("Holding right")
         shipX = shipX + 0.5;
-        if (shipX >= 85) {
-            shipX = 85;
+        if (shipX >= 63) {
+            shipX = 63;
         }
         shipP.style.left = `${shipX}%`;
     }
@@ -244,7 +218,7 @@ function shoot() {
     bullet.setAttribute("id", `bullet`)
     document.body.insertBefore(bullet, bg)
     bull = document.getElementById(`bullet`);
-    bull.style.left = `${shipX + 1.8}%`;
+    bull.style.left = `${shipX + 0.45}%`;
     bull.style.top = `${bullY}%`
 }
 
@@ -264,7 +238,7 @@ setInterval(function () {
 }, 10)
 
 setInterval(function () {
-    for (i = 0; i < 42; i++) {
+    for (i = 0; i < 36; i++) {
         try {
             alien = document.querySelector(`#space${i}`)
             bull = document.querySelector(`#bullet`);
@@ -316,7 +290,7 @@ setInterval(function(){
 */
 
 setInterval(function detectDivCollision() {
-    for (let i = 0; i < 42; i++) {
+    for (let i = 0; i < 36; i++) {
         const alien = document.querySelector(`#space${i}`);
         const ship = document.querySelector("#ship");
         const pos1 = alien.getBoundingClientRect();
@@ -338,7 +312,7 @@ setInterval(function detectDivCollision() {
 }, 10);
 
 setInterval(function Win() {
-    if (pts >= 42) {
+    if (pts >= 36) {
         win();
     }
 }, 100);
