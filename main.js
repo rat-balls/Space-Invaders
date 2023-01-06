@@ -334,14 +334,9 @@ setInterval(function detectDivCollision() {
     for (let i = 0; i < 42; i++) {
         const alien = document.querySelector(`#space${i}`);
         const ship = document.querySelector("#ship");
-        const alienB = document.querySelector("#alienBullet")
         const pos1 = alien.getBoundingClientRect();
         const pos2 = ship.getBoundingClientRect();
-        const pos3 = alienB.getBoundingClientRect();
         if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
-            gameover()
-        }
-        if (inRange(pos3.x, pos2.x, pos2.x + 70) && inRange(pos3.y, pos2.y, pos2.y + 45)) {
             gameover()
         }
         if (pos1.y >= 680){
