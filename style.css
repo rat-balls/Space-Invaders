@@ -101,7 +101,7 @@ body {
 .start {
     position: fixed;
     top: 50%;
-    left: 36vw;
+    left: 40vw;
     font-size: 100px;
     color: white;
     z-index: 1;
@@ -175,12 +175,12 @@ body {
     }
 }
 .asteroid {
-    position: absolute;
+    position: fixed;
     top: -20px;
     animation: fall1 linear forwards;
 }
 .planete {
-    position: absolute;
+    position: fixed;
     top: -20px;
     animation: fall1 linear forwards;
 }

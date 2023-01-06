@@ -7,6 +7,8 @@ const sc = document.getElementById("sc")
 const oScreen = document.createElement("div")
 const GOM = new Audio("Musique/GameOverSong.mp3")
 const Win = document.createElement("div")
+const meteor1 = document.createElement('img');
+const meteor2 = document.createElement('img');
 
 spaceList = []
 index = 0;
@@ -294,7 +296,33 @@ setInterval(function () {
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
 }
+setInterval(meteor, 600);
+function meteor(){
+    const meteor1 = document.createElement('img)');
+    meteor1.src = "./assets/asteroid.png";
+    meteor1.classList.add('asteroid');
+    meteor1.style.height = '40px';
+    meteor1.style.animationDuration = '5s';
+    meteor1.style.left = Math.random() * window.innerWidth + 'px';
+    body.appendChild(meteor1);
 
+    setTimeout(() => {
+        meteor1.remove();
+    },10000)
+
+    const meteor2 = document.createElement('img');
+    meteor2.src = "./img/planete1.png";
+    meteor2.classList.add('planete');
+    meteor2.style.height = '75px';
+    meteor2.style.width = '75px';
+    meteor2.style.animationDuration = '5s';
+    meteor2.style.left = Math.random() * window.innerWidth + 'px';
+    body.appendChild(meteor2);
+
+    setTimeout(() => {
+        meteor2.remove();
+    },10000)
+}
 /*
 setInterval(function(){
     rnd = Math.floor(Math.random() * 10000)
@@ -323,6 +351,8 @@ setInterval(function detectDivCollision() {
         const ship = document.querySelector("#ship");
         const pos1 = alien.getBoundingClientRect();
         const pos2 = ship.getBoundingClientRect();
+        const pos3 = meteor1.getBoundingClientRect();
+        const pos4 = meteor2.getBoundingClientRect();
 
         if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
             console.log('Les divs sont en contact');
@@ -334,37 +364,31 @@ setInterval(function detectDivCollision() {
                 GOM.play();
                 played = true
             }
+        }else if(inRange(pos2.x, pos3.x, pos3.x + 40) && inRange(pos2.y, pos3.y, pos3.y + 40)){
+            console.log('Les divs sont en contact');
+            lost = true;
+            ship.style.backgroundColor = "red"
+            const oscreen = document.getElementById("oscreen")
+            oscreen.style.visibility = "visible";
+            if (played == false) {
+                GOM.play();
+                played = true
+            }
+        }else if(inRange(pos2.x, pos4.x, pos4.x + 75) && inRange(pos2.y, pos4.y, pos4.y + 75)){
+            console.log('Les divs sont en contact');
+            lost = true;
+            ship.style.backgroundColor = "red"
+            const oscreen = document.getElementById("oscreen")
+            oscreen.style.visibility = "visible";
+            if (played == false) {
+                GOM.play();
+                played = true
+            }
         }
-
     }
 },10);
 
-setInterval(meteor, 600);
-function meteor(){
-    const meteor1 = document.createElement('img');
-    meteor1.src = "./assets/asteroid.png";
-    meteor1.classList.add('asteroid');
-    meteor1.style.height = '30px';
-    meteor1.style.animationDuration = '5s';
-    meteor1.style.left = Math.random() * window.innerWidth + 'px';
-    body.appendChild(meteor1);
 
-    setTimeout(() => {
-        meteor1.remove();
-    },10000)
-
-    const meteor2 = document.createElement('img');
-    meteor2.src = "./img/planete1.png";
-    meteor2.classList.add('planete');
-    meteor2.style.height = '75px';
-    meteor2.style.animationDuration = '5s';
-    meteor2.style.left = Math.random() * window.innerWidth + 'px';
-    body.appendChild(meteor2);
-
-    setTimeout(() => {
-        meteor2.remove();
-    },10000)
-}
 
 // setInterval(debriL, 600);
 // function debriL(){
