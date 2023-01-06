@@ -384,11 +384,55 @@ setInterval(function detectDivCollision() {
                 GOM.play();
                 played = true
             }
+            console.log(pos1.y)
+            if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
+                gameover()
+            }
+            if (pos1.y >= 680){
+                gameover()
+            }
         }
     }
 },10);
 
+function gameover(){
+    console.log('Les divs sont en contact');
+    lost = true;
+    ship.style.backgroundColor = "red"
+    const oscreen = document.getElementById("oscreen")
+    oscreen.style.visibility = "visible";
+    if (played == false) {
+        GOM.play();
+        played = true
+    }
+}
 
+setInterval(meteor, 600);
+function meteor(){
+    const meteor1 = document.createElement('img');
+    meteor1.src = "./assets/asteroid.png";
+    meteor1.classList.add('asteroid');
+    meteor1.style.height = '30px';
+    meteor1.style.animationDuration = '5s';
+    meteor1.style.left = Math.random() * window.innerWidth + 'px';
+    body.appendChild(meteor1);
+
+    setTimeout(() => {
+        meteor1.remove();
+    },10000)
+
+    const meteor2 = document.createElement('img');
+    meteor2.src = "./img/planete1.png";
+    meteor2.classList.add('planete');
+    meteor2.style.height = '50px';
+    meteor2.style.animationDuration = '5s';
+    meteor2.style.left = Math.random() * window.innerWidth + 'px';
+    body.appendChild(meteor2);
+
+    setTimeout(() => {
+        meteor2.remove();
+    },10000)
+}
 
 // setInterval(debriL, 600);
 // function debriL(){
