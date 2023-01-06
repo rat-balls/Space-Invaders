@@ -20,6 +20,8 @@ started = 0;
 pts = 0;
 lost = false;
 played = false;
+aShot = 0;
+aBy = 0;
 
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
@@ -220,7 +222,6 @@ setInterval(function () {
     shipP = document.getElementById("ship");
 
     if (left == 1) {
-        console.log("Holding left")
         shipX = shipX - 0.5;
         if (shipX <= 10) {
             shipX = 10;
@@ -228,7 +229,6 @@ setInterval(function () {
         shipP.style.left = `${shipX}%`;
     }
     if (right == 1) {
-        console.log("Holding right")
         shipX = shipX + 0.5;
         if (shipX >= 85) {
             shipX = 85;
@@ -260,6 +260,16 @@ setInterval(function () {
         }
         if (bullY <= 0) {
             shot = 0;
+        }
+        
+        try {
+            aBy = aBy + 6;
+            aBullet.style.top = `${aBy}px`;
+        } catch (error) {
+            TypeError;
+        }
+        if (aBy >= 800) {
+            aShot = 0;
         }
     } 
 }, 10)
@@ -295,10 +305,12 @@ function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
 }
 
-/*
+
 setInterval(function(){
     rnd = Math.floor(Math.random() * 10000)
     if(rnd > 9900){
+        if(aShot == 0){
+        aShot = 1
         console.log("Shoot")
         rndAlien = Math.floor(Math.random() * 42)
         alien = document.querySelector(`#space${rndAlien}`)
@@ -311,20 +323,24 @@ setInterval(function(){
         aXY = alien.getBoundingClientRect()
         aBx = aXY.x
         aBy = aXY.y
-        aBullet.style.left = `${(aBx*0.1) - 10}%`;
-        aBullet.style.top = `${aBy}%`
+        aBullet.style.left = `${aBx}px`;
+        aBullet.style.top = `${aBy}px`
+        }
     }
 }, 10)
-*/
 
 setInterval(function detectDivCollision() {
     for (let i = 0; i < 42; i++) {
         const alien = document.querySelector(`#space${i}`);
         const ship = document.querySelector("#ship");
+        const alienB = document.querySelector("#alienBullet")
         const pos1 = alien.getBoundingClientRect();
         const pos2 = ship.getBoundingClientRect();
-        console.log(pos1.y)
+        const pos3 = alienB.getBoundingClientRect();
         if (inRange(pos2.x, pos1.x, pos1.x + 49) && inRange(pos2.y, pos1.y, pos1.y + 30)) {
+            gameover()
+        }
+        if (inRange(pos3.x, pos2.x, pos2.x + 70) && inRange(pos3.y, pos2.y, pos2.y + 45)) {
             gameover()
         }
         if (pos1.y >= 680){
