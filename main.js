@@ -305,7 +305,7 @@ function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
 }
 
-
+/*
 setInterval(function(){
     rnd = Math.floor(Math.random() * 10000)
     if(rnd > 9900){
@@ -328,6 +328,7 @@ setInterval(function(){
         }
     }
 }, 10)
+*/
 
 setInterval(function detectDivCollision() {
     for (let i = 0; i < 42; i++) {
