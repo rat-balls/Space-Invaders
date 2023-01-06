@@ -171,17 +171,17 @@ body {
 }
 @keyframes fall1{
     to{
-        transform: translateY(105vh);
+        transform: translateY(115vh);
     }
 }
 .asteroid {
-    position: absolute;
-    top: -20px;
+    position: fixed;
+    top: -100px;
     animation: fall1 linear forwards;
 }
 .planete {
-    position: absolute;
-    top: -20px;
+    position: fixed;
+    top: -100px;
     animation: fall1 linear forwards;
 }
 

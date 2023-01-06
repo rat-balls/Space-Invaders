@@ -230,8 +230,8 @@ setInterval(function () {
     if (right == 1) {
         console.log("Holding right")
         shipX = shipX + 0.5;
-        if (shipX >= 95) {
-            shipX = 95;
+        if (shipX >= 85) {
+            shipX = 85;
         }
         shipP.style.left = `${shipX}%`;
     }
